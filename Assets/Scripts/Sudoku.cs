@@ -14,10 +14,10 @@ public class Sudoku : MonoBehaviour
 
     Matrix<int> _createdMatrix;
 
-    int _smallSideX;
-    int _smallSideY;
-    int _bigSideX;
-    int _bigSideY;
+    public int _smallSideX;
+    public int _smallSideY;
+    public int _bigSideX;
+    public int _bigSideY;
 
 
     private void Start()
@@ -28,7 +28,11 @@ public class Sudoku : MonoBehaviour
         CreateSudoku();
     }
 
-    
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            CreateSudoku();
+    }
 
     void CreateEmptyBoard()
     {
@@ -51,10 +55,10 @@ public class Sudoku : MonoBehaviour
     void CreateSudoku()
     {
         StopAllCoroutines();
-        nums = new List<int>();
+        nums = new List<int>(); 
         ClearBoard();
-        List<Matrix<int>> l = new List<Matrix<int>>();     
 
+        _createdMatrix = new Matrix<int>(3, 3);
         TranslateAllValues(_createdMatrix);
   
     }
