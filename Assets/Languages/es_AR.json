@@ -1,0 +1,12 @@
+{
+    "items": [
+        {
+            "key": "play",
+            "value": "Jugar"
+        },
+		{
+            "key": "settings",
+            "value": "Configuración"
+        }
+    ]
+}
