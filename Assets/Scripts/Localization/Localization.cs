@@ -53,7 +53,6 @@ public class Localization
 
             foreach (var item in loadedData.items)
             {
-                Debug.Log(item.key);
                 texts.Add(item.key, item.value);
             }
 

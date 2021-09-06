@@ -58,7 +58,7 @@ public class Sudoku : MonoBehaviour
         nums = new List<int>(); 
         ClearBoard();
 
-        _createdMatrix = new Matrix<int>(3, 3);
+        _createdMatrix = new Matrix<int>(_bigSideX,_bigSideY);
         TranslateAllValues(_createdMatrix);
   
     }

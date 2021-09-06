@@ -81,6 +81,7 @@ public class Matrix<T> : IEnumerable<T>
     public T this[int x, int y] {
 		get
         {
+            Debug.Log(Width);
             var index = x + y * Width;     
             return matrix[index];
 		}
