@@ -9,8 +9,8 @@ public class PlayerController : MonoBehaviour
     public void StartController()
     { //Llamada por el EventManager
         controller.Player.Rotate.performed += _rotate => playerModel.Rotate();
-        controller.Player.Rotate.performed += _hold => playerModel.Hold();
-        controller.Player.Rotate.performed += _swipe => playerModel.Swipe();
+        controller.Player.Hold.performed += _hold => playerModel.Hold();
+        controller.Player.Swipe.performed += _swipe => playerModel.Swipe();
     }
 
     private void OnEnable()
