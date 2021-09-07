@@ -1,0 +1,33 @@
+{
+    "name": "SwipeAction",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "5c91e59e-861c-495d-8e6b-691587e9eb44",
+            "actions": [
+                {
+                    "name": "Rotate",
+                    "type": "Button",
+                    "id": "4a7bd81e-bfce-4778-a139-b3e7c54ac49a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "297595e2-c22f-4912-966d-9a3369cdc967",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
