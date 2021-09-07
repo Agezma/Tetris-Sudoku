@@ -1,5 +1,5 @@
 {
-    "name": "SwipeAction",
+    "name": "InputMaster",
     "maps": [
         {
             "name": "Player",
@@ -9,6 +9,22 @@
                     "name": "Rotate",
                     "type": "Button",
                     "id": "4a7bd81e-bfce-4778-a139-b3e7c54ac49a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Hold",
+                    "type": "PassThrough",
+                    "id": "302d42ca-d211-4257-a651-54b3ceda6146",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Swipe",
+                    "type": "Button",
+                    "id": "4e6253db-a188-4fd8-b2fd-93a141fda1da",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -23,6 +39,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9d320fac-690c-4c6e-8999-a292939d58fd",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6e06504d-de82-49f0-9637-407db807db0e",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "533baf54-5ebb-4fba-a302-66f78fed0029",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Swipe",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

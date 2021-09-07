@@ -18,4 +18,10 @@ public class PlayerModel : MonoBehaviour
     public void Rotate(){
         
     }
+    public void Hold(){
+
+    }
+    public void Swipe(){
+        
+    }
 }

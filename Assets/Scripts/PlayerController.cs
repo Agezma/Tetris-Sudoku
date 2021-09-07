@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public PlayerModel playerModel;
     public void StartController(){ //Llamada por el EventManager
 controller.Player.Rotate.performed += _rotate => playerModel.Rotate();
+controller.Player.Rotate.performed += _hold => playerModel.Hold();
+controller.Player.Rotate.performed += _swipe => playerModel.Swipe();
     }
     
     // Start is called before the first frame update

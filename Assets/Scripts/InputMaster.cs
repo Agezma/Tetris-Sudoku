@@ -25,6 +25,22 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Hold"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""302d42ca-d211-4257-a651-54b3ceda6146"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Swipe"",
+                    ""type"": ""Button"",
+                    ""id"": ""4e6253db-a188-4fd8-b2fd-93a141fda1da"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -38,6 +54,39 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9d320fac-690c-4c6e-8999-a292939d58fd"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6e06504d-de82-49f0-9637-407db807db0e"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""533baf54-5ebb-4fba-a302-66f78fed0029"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swipe"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -47,6 +96,8 @@ public class @InputMaster : IInputActionCollection, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
+        m_Player_Hold = m_Player.FindAction("Hold", throwIfNotFound: true);
+        m_Player_Swipe = m_Player.FindAction("Swipe", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -97,11 +148,15 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Rotate;
+    private readonly InputAction m_Player_Hold;
+    private readonly InputAction m_Player_Swipe;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
         public PlayerActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
         public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
+        public InputAction @Hold => m_Wrapper.m_Player_Hold;
+        public InputAction @Swipe => m_Wrapper.m_Player_Swipe;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -114,6 +169,12 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Rotate.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
                 @Rotate.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
                 @Rotate.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
+                @Hold.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHold;
+                @Hold.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHold;
+                @Hold.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHold;
+                @Swipe.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwipe;
+                @Swipe.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwipe;
+                @Swipe.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwipe;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -121,6 +182,12 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Rotate.started += instance.OnRotate;
                 @Rotate.performed += instance.OnRotate;
                 @Rotate.canceled += instance.OnRotate;
+                @Hold.started += instance.OnHold;
+                @Hold.performed += instance.OnHold;
+                @Hold.canceled += instance.OnHold;
+                @Swipe.started += instance.OnSwipe;
+                @Swipe.performed += instance.OnSwipe;
+                @Swipe.canceled += instance.OnSwipe;
             }
         }
     }
@@ -128,5 +195,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     public interface IPlayerActions
     {
         void OnRotate(InputAction.CallbackContext context);
+        void OnHold(InputAction.CallbackContext context);
+        void OnSwipe(InputAction.CallbackContext context);
     }
 }
