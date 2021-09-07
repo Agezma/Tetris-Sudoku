@@ -28,10 +28,11 @@ public class Sudoku : MonoBehaviour
         CreateSudoku();
     }
 
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            CreateSudoku();
+        
+       
     }
 
     void CreateEmptyBoard()
@@ -60,7 +61,6 @@ public class Sudoku : MonoBehaviour
 
         _createdMatrix = new Matrix<int>(_bigSideX,_bigSideY);
         TranslateAllValues(_createdMatrix);
-  
     }
 
     void TranslateAllValues(Matrix<int> matrix)

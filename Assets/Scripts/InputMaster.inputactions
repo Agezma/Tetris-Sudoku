@@ -28,6 +28,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "SpaceBar",
+                    "type": "Button",
+                    "id": "dc941222-f1da-4304-a5fc-df0a20700665",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -72,6 +80,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Swipe",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c5c4a795-12c4-43cb-ac52-c7dacd813f16",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpaceBar",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

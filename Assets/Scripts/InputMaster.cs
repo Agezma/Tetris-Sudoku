@@ -41,6 +41,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""SpaceBar"",
+                    ""type"": ""Button"",
+                    ""id"": ""dc941222-f1da-4304-a5fc-df0a20700665"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -87,6 +95,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""action"": ""Swipe"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c5c4a795-12c4-43cb-ac52-c7dacd813f16"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpaceBar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -98,6 +117,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
         m_Player_Hold = m_Player.FindAction("Hold", throwIfNotFound: true);
         m_Player_Swipe = m_Player.FindAction("Swipe", throwIfNotFound: true);
+        m_Player_SpaceBar = m_Player.FindAction("SpaceBar", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -150,6 +170,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Rotate;
     private readonly InputAction m_Player_Hold;
     private readonly InputAction m_Player_Swipe;
+    private readonly InputAction m_Player_SpaceBar;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -157,6 +178,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
         public InputAction @Hold => m_Wrapper.m_Player_Hold;
         public InputAction @Swipe => m_Wrapper.m_Player_Swipe;
+        public InputAction @SpaceBar => m_Wrapper.m_Player_SpaceBar;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -175,6 +197,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Swipe.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwipe;
                 @Swipe.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwipe;
                 @Swipe.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwipe;
+                @SpaceBar.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpaceBar;
+                @SpaceBar.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpaceBar;
+                @SpaceBar.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpaceBar;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -188,6 +213,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Swipe.started += instance.OnSwipe;
                 @Swipe.performed += instance.OnSwipe;
                 @Swipe.canceled += instance.OnSwipe;
+                @SpaceBar.started += instance.OnSpaceBar;
+                @SpaceBar.performed += instance.OnSpaceBar;
+                @SpaceBar.canceled += instance.OnSpaceBar;
             }
         }
     }
@@ -197,5 +225,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
         void OnRotate(InputAction.CallbackContext context);
         void OnHold(InputAction.CallbackContext context);
         void OnSwipe(InputAction.CallbackContext context);
+        void OnSpaceBar(InputAction.CallbackContext context);
     }
 }
