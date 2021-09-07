@@ -6,11 +6,16 @@ public class PlayerController : MonoBehaviour
 {
     public InputMaster controller;
     public PlayerModel playerModel;
+    public void Start(){
+        StartController();
+    }
     public void StartController()
     { //Llamada por el EventManager
         controller.Player.Rotate.performed += _rotate => playerModel.Rotate();
         controller.Player.Hold.performed += _hold => playerModel.Hold();
-        controller.Player.Swipe.performed += _swipe => playerModel.Swipe();
+        controller.Player.Swipe.performed += _swipe => playerModel.Swipe(_swipe.ReadValue<float>());
+        controller.Player.Swipe.canceled += _s => playerModel.Swipe(_s.ReadValue<float>());
+        controller.Player.SpaceBar.performed += _debug => Debug.Log("tratando de mover");
     }
 
     private void OnEnable()
@@ -25,10 +30,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         controller = new InputMaster();
-    }
-    void Start()
-    {
-        
+        Debug.Log("Created");
     }
 
     // Update is called once per frame

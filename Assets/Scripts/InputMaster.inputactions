@@ -73,15 +73,37 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "533baf54-5ebb-4fba-a302-66f78fed0029",
-                    "path": "",
+                    "name": "1D Axis",
+                    "id": "e72be9b3-1fdf-49e3-bf78-4dcd456ba00d",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Swipe",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "29c57547-ca80-463e-9c16-1608c881a9c7",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Swipe",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "dc912fe2-2694-4fb5-913c-6216108e9a3e",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Swipe",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "",
