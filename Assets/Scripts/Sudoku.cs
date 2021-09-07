@@ -38,8 +38,8 @@ public class Sudoku : MonoBehaviour
     void CreateEmptyBoard()
     {
         float spacing = 68f;
-        float startX = -spacing * 4f;
-        float startY = spacing * 4f;
+        float startX = -spacing * (_bigSideX - 1) / 2f;
+        float startY = spacing * (_bigSideY - 1) / 2f;
 
         _board = new Matrix<Cell>(_bigSideX, _bigSideY);
         for (int x = 0; x < _board.Width; x++)
