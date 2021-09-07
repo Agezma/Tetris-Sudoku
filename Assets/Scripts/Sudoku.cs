@@ -52,7 +52,7 @@ public class Sudoku : MonoBehaviour
             }
         }
     }
-
+    
     void CreateSudoku()
     {
         StopAllCoroutines();
@@ -61,6 +61,8 @@ public class Sudoku : MonoBehaviour
 
         _createdMatrix = new Matrix<int>(_bigSideX,_bigSideY);
         TranslateAllValues(_createdMatrix);
+
+        // EventManager.instance.TriggerEvent(EventNames.OnCreatedSudoku);
     }
 
     void TranslateAllValues(Matrix<int> matrix)
