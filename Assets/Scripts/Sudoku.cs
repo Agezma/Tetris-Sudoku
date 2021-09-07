@@ -7,7 +7,7 @@ public class Sudoku : MonoBehaviour
     public Cell prefabCell;
     public Canvas canvas;
 
-    Matrix<Cell> _board;
+    [HideInInspector] public Matrix<Cell> _board;
 
     List<int> nums = new List<int>();
 
@@ -34,12 +34,13 @@ public class Sudoku : MonoBehaviour
         
        
     }
-
+    [HideInInspector] public float spacing = 68f;
+    [HideInInspector] public float startX;
+    [HideInInspector] public float startY;
     void CreateEmptyBoard()
     {
-        float spacing = 68f;
-        float startX = -spacing * (_bigSideX - 1) / 2f;
-        float startY = spacing * (_bigSideY - 1) / 2f;
+        startX = -spacing * (_bigSideX - 1) / 2f;
+        startY = spacing * (_bigSideY - 1) / 2f;
 
         _board = new Matrix<Cell>(_bigSideX, _bigSideY);
         for (int x = 0; x < _board.Width; x++)

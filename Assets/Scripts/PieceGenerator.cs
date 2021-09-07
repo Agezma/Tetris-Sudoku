@@ -6,10 +6,13 @@ public class PieceGenerator : MonoBehaviour
 {
     public List<Piece> pieces;
     public Transform canvas;
-    public Piece GeneratePiece(){
+    public Sudoku sudoku;
+
+    public Piece GeneratePiece()
+    {
         Debug.Log("Piece Generated");
-        Piece p =
-        Instantiate(pieces[0],transform);
+        Piece p = Instantiate(pieces[0],transform);
+        p.sudoku = sudoku;
         return p;
     }
 

@@ -28,8 +28,13 @@ public class PlayerModel : MonoBehaviour
 
     }
     public void Swipe(float a){
-        axis = a;
-        isMoving = !isMoving;
-        Debug.Log("isMoving");
+        //axis = a;
+        //isMoving = !isMoving;
+        //Debug.Log("isMoving");
+      
+        controlledPiece.Move(a);
+
     }
+
+
 }
