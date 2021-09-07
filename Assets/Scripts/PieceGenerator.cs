@@ -5,8 +5,12 @@ using UnityEngine;
 public class PieceGenerator : MonoBehaviour
 {
     public List<Piece> pieces;
+    public Transform canvas;
     public Piece GeneratePiece(){
-        return Instantiate(pieces[Random.Range(0,pieces.Count)] as Piece);
+        Debug.Log("Piece Generated");
+        Piece p =
+        Instantiate(pieces[0],transform);
+        return p;
     }
 
 }

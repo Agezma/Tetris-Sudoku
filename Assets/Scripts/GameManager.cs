@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pieceGenerator.GeneratePiece();
+        playerModel.controlledPiece = pieceGenerator.GeneratePiece();
     }
 
     // Update is called once per frame
