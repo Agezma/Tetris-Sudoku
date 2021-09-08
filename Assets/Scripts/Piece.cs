@@ -41,4 +41,17 @@ public class Piece : MonoBehaviour
 
 
     }
+    public void Rotate(){
+        Debug.Log("Rotating");
+        if (CanRotate()){
+            transform.RotateAround(transform.position,Vector3.forward,90);
+            foreach(var c in cellList){
+                c.transform.RotateAround(c.transform.position,-Vector3.forward,90);
+
+            }
+        }
+    }
+    bool CanRotate(){
+        return true;
+    }
 }

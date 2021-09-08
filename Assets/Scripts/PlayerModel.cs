@@ -22,7 +22,7 @@ public class PlayerModel : MonoBehaviour
         }
     }
     public void Rotate(){
-        
+        controlledPiece.Rotate();
     }
     public void Hold(){
 
