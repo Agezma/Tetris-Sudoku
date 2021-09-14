@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Sudoku : MonoBehaviour
 {
@@ -48,8 +49,8 @@ public class Sudoku : MonoBehaviour
             for (int y = 0; y < _board.Height; y++)
             {
                 var cell = _board[x, y] = Instantiate(prefabCell);
-                cell.transform.SetParent(canvas.transform, false);
-                cell.transform.localPosition = new Vector3(startX + x * spacing, startY - y * spacing, 0);
+                cell.transform.SetParent(transform, false);
+                cell.transform.localPosition = new Vector3(startX + x * spacing, startY - y * spacing, 0);             
             }
         }
     }

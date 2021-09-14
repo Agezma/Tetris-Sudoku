@@ -19,7 +19,7 @@ public class EventManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(eventDictionary.Count);
+        //Debug.Log(eventDictionary.Count);
     }
 
     public void SubscribeEvent(string eventName, Action listener)
