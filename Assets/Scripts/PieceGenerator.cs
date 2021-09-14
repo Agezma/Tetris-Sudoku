@@ -8,9 +8,13 @@ public class PieceGenerator : MonoBehaviour
     public Transform canvas;
     public Sudoku sudoku;
 
+    public void Start()
+    {
+    }
+
     public Piece GeneratePiece()
     {
-        Debug.Log("Piece Generated");
+        //Debug.Log("Piece Generated");
         Piece p = Instantiate(pieces[0],transform);
         p.sudoku = sudoku;
         return p;

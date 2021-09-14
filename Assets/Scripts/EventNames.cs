@@ -5,4 +5,7 @@ using UnityEngine;
 public static class EventNames
 {
     public static string OnCreatedSudoku = "OnCreatedSudoku";
+
+    public static string OnFichaArrived = "OnFichaArrived";
+
 }

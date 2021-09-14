@@ -53,6 +53,33 @@ public class Sudoku : MonoBehaviour
             }
         }
     }
+
+    public void TranslateCurrentPiece(int x, int y, Cell value)
+    {
+        _board[x, y].number = value.number;
+        _board[x, y].locked = true;
+    }
+
+    float cellSize = 64f;
+    public Cell CurrentCell(Vector3 toCheck)
+    {
+        Cell closest = _board[0, 0];
+        float minDist = Vector3.Distance(closest.transform.position, toCheck);
+
+        for (int i = 0; i < _board.Width; i++)
+        {
+            for (int j = 0; j < _board.Height; j++)
+            {
+                float newDist = Vector3.Distance(_board[i,j].transform.position, toCheck);
+                if (newDist < minDist)
+                {
+                    minDist = newDist;
+                    closest = _board[i, j];
+                }
+            }
+        }
+        return closest;
+    }
     
     void CreateSudoku()
     {

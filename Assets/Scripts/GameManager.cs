@@ -9,6 +9,13 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GeneratePiece();
+
+        EventManager.instance.SubscribeEvent(EventNames.OnFichaArrived, GeneratePiece);
+    }
+
+    void GeneratePiece()
+    {
         playerModel.controlledPiece = pieceGenerator.GeneratePiece();
     }
 

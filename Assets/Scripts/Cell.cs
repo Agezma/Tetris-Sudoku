@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class Cell : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class Cell : MonoBehaviour
     bool _invalid;
     Image _image;
     Color _prev;
+
+    public List<int> positionsInGrid;
 
     public int number
     {
@@ -77,3 +80,4 @@ public class Cell : MonoBehaviour
 
     }
 }
+

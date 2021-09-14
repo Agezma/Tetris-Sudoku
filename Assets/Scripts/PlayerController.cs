@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
         controller.Player.Rotate.performed += _rotate => playerModel.Rotate();
         controller.Player.Hold.performed += _hold => playerModel.Hold();
         controller.Player.Swipe.performed += _swipe => playerModel.Swipe(_swipe.ReadValue<float>());
-        controller.Player.Swipe.canceled += _s => playerModel.Swipe(_s.ReadValue<float>());
+        //controller.Player.Swipe.canceled += _s => playerModel.Swipe(_s.ReadValue<float>());
         controller.Player.SpaceBar.performed += _debug => Debug.Log("tratando de mover");
     }
 
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         controller = new InputMaster();
-        Debug.Log("Created");
+        //Debug.Log("Created");
     }
 
     // Update is called once per frame

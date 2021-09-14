@@ -50,6 +50,7 @@ MonoBehaviour:
   - {fileID: 5251602576906654290}
   speed: 1
   sudoku: {fileID: 0}
+  gridData: {fileID: 11400000, guid: 569c02aaa9c809a4599b22afadf0715f, type: 2}
 --- !u!1001 &4779711719026445986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66,6 +67,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000,
         type: 0}
+    - target: {fileID: 11468018, guid: f058d3c53ae5dea4aaf9a9c1c5209860, type: 3}
+      propertyPath: positionsInGrid.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11468018, guid: f058d3c53ae5dea4aaf9a9c1c5209860, type: 3}
+      propertyPath: positionsInGrid.Array.data[0]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11468018, guid: f058d3c53ae5dea4aaf9a9c1c5209860, type: 3}
+      propertyPath: positionsInGrid.Array.data[1]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11468018, guid: f058d3c53ae5dea4aaf9a9c1c5209860, type: 3}
+      propertyPath: positionsInGrid.Array.data[2]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11468018, guid: f058d3c53ae5dea4aaf9a9c1c5209860, type: 3}
+      propertyPath: positionsInGrid.Array.data[3]
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 22459724, guid: f058d3c53ae5dea4aaf9a9c1c5209860, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -80,15 +101,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22459724, guid: f058d3c53ae5dea4aaf9a9c1c5209860, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 22459724, guid: f058d3c53ae5dea4aaf9a9c1c5209860, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 22459724, guid: f058d3c53ae5dea4aaf9a9c1c5209860, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 22459724, guid: f058d3c53ae5dea4aaf9a9c1c5209860, type: 3}
       propertyPath: m_LocalRotation.w
@@ -116,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22459724, guid: f058d3c53ae5dea4aaf9a9c1c5209860, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -31
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 22459724, guid: f058d3c53ae5dea4aaf9a9c1c5209860, type: 3}
       propertyPath: m_SizeDelta.x
@@ -186,6 +207,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000,
         type: 0}
+    - target: {fileID: 11468018, guid: f058d3c53ae5dea4aaf9a9c1c5209860, type: 3}
+      propertyPath: positionsInGrid.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11468018, guid: f058d3c53ae5dea4aaf9a9c1c5209860, type: 3}
+      propertyPath: positionsInGrid.Array.data[0]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11468018, guid: f058d3c53ae5dea4aaf9a9c1c5209860, type: 3}
+      propertyPath: positionsInGrid.Array.data[1]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11468018, guid: f058d3c53ae5dea4aaf9a9c1c5209860, type: 3}
+      propertyPath: positionsInGrid.Array.data[2]
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11468018, guid: f058d3c53ae5dea4aaf9a9c1c5209860, type: 3}
+      propertyPath: positionsInGrid.Array.data[3]
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 22459724, guid: f058d3c53ae5dea4aaf9a9c1c5209860, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -200,15 +241,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22459724, guid: f058d3c53ae5dea4aaf9a9c1c5209860, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 22459724, guid: f058d3c53ae5dea4aaf9a9c1c5209860, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 22459724, guid: f058d3c53ae5dea4aaf9a9c1c5209860, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 22459724, guid: f058d3c53ae5dea4aaf9a9c1c5209860, type: 3}
       propertyPath: m_LocalRotation.w
@@ -236,7 +277,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22459724, guid: f058d3c53ae5dea4aaf9a9c1c5209860, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -31
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 22459724, guid: f058d3c53ae5dea4aaf9a9c1c5209860, type: 3}
       propertyPath: m_SizeDelta.x
