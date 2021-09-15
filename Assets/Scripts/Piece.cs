@@ -29,12 +29,12 @@ public class Piece : MonoBehaviour
             int n = Random.Range(1, 10);
             c.number = n;
 
-            Vector2 aux = GetDataInfo(c);
+            Vector2 aux = GetPosInGrid(c);
             c.transform.position = new Vector3(sudoku._board[(int)(currentIndex.x + aux.x), 0].transform.position.x, transform.position.y + aux.y * sudoku.spacing, 0);
         }
     }
 
-    Vector2 GetDataInfo(Cell c)
+    Vector2Int GetPosInGrid(Cell c)
     {
         return gridData.gridInfo[c.positionsInGrid[currentRotation]];
     }
@@ -45,7 +45,7 @@ public class Piece : MonoBehaviour
         {
             if (item.locked) return;
         }
-        if (!CheckBorder())
+        if (CanMoveDown())
             MoveDown();
 
     }
@@ -54,7 +54,7 @@ public class Piece : MonoBehaviour
     {     
         foreach (var c in cellList)
         {
-            float auxIndex = currentIndex.x + GetDataInfo(c).x;
+            float auxIndex = currentIndex.x + GetPosInGrid(c).x;
             //Debug.Log(gridData.gridInfo[c.positionsInGrid[currentRotation]].x);
             //Debug.Log("Pieza: "+ c+ " ---" + auxIndex);
             if ( auxIndex + dir < 0 || auxIndex + dir >= sudoku._bigSideX)
@@ -64,7 +64,7 @@ public class Piece : MonoBehaviour
         currentIndex.x += Mathf.RoundToInt(dir);
         foreach (var c in cellList)
         {
-            c.transform.position = new Vector3(sudoku._board[(int)(currentIndex.x + GetDataInfo(c).x), 0].transform.position.x, c.transform.position.y, 0);
+            c.transform.position = new Vector3(sudoku._board[(int)(currentIndex.x + GetPosInGrid(c).x), 0].transform.position.x, c.transform.position.y, 0);
         }
         //transform.position = new Vector3(sudoku._board[currentIndex.x, 0].transform.position.x + 38, transform.position.y, transform.position.z);
     }
@@ -73,12 +73,8 @@ public class Piece : MonoBehaviour
     {
         transform.position += speed * Vector3.down;
 
-        if(transform.position.y <= sudoku._board[currentIndex.x, currentIndex.y + 1].transform.position.y)
-        {
-            currentIndex.y ++;
-            initialVec = sudoku._board[currentIndex.x, currentIndex.y].transform.position;
-        }
-        Debug.Log(currentIndex);
+
+
     }
 
     public void Rotate()
@@ -106,31 +102,57 @@ public class Piece : MonoBehaviour
         if (currentRotation >= 4) currentRotation = 0;
         foreach (var c in cellList)
         {
-            Vector2 aux = GetDataInfo(c);
+            Vector2 aux = GetPosInGrid(c);
             c.transform.position = new Vector3(sudoku._board[(int)(currentIndex.x + aux.x), 0].transform.position.x, transform.position.y + aux.y * sudoku.spacing, 0);
         }
     }
-    
 
-    public bool CheckBorder()
+
+    public bool CanMoveDown()
     {
-        int aux = 0;
-        for (int i = 0; i < cellList.Count; i++)
+        foreach (var c in cellList)
         {
-            var a = sudoku.CurrentCell(cellList[i].transform.position + Vector3.down * sudoku.spacing);
-
-            if (a.locked || a.transform.position.y > transform.position.y + speed)
+            Debug.Log(currentIndex + "---" + GetPosInGrid(c));
+            if(currentIndex.y - GetPosInGrid(c).y + 1 >= sudoku._board.Height)
             {
-                sudoku.TranslateCurrentPiece(currentIndex.x, sudoku._bigSideY - 1, a);
+                Debug.Log("ABAJO");
 
+                foreach (var ce in cellList)
+                {
+                    sudoku.TranslateCurrentPiece(currentIndex.x + GetPosInGrid(ce).x, currentIndex.y - GetPosInGrid(ce).y, ce);
+                }
+                EventManager.instance.TriggerEvent(EventNames.OnFichaArrived);
 
+                Destroy(gameObject);
+                return false;
+            }
+            else if( sudoku._board[currentIndex.x + GetPosInGrid(c).x, currentIndex.y - GetPosInGrid(c).y + 1].locked)
+            {
+                Debug.Log("LOCKED");
 
-                //EventManager.instance.TriggerEvent(EventNames.OnFichaArrived);
+                foreach (var ce in cellList)
+                {
+                    sudoku.TranslateCurrentPiece(currentIndex.x + GetPosInGrid(ce).x, currentIndex.y - GetPosInGrid(ce).y, ce);
+                }
+                EventManager.instance.TriggerEvent(EventNames.OnFichaArrived);
 
-                return true;
+                Destroy(gameObject);
+                return false;
             }
         }
-        return false;
+
+
+        if(currentIndex.y + 1 >= sudoku._board.Height)
+        {
+            Debug.Log("FALLA");
+        }
+        else if (transform.position.y <= sudoku._board[currentIndex.x, currentIndex.y + 1].transform.position.y)
+        {
+            currentIndex.y++;
+            initialVec = sudoku._board[currentIndex.x, currentIndex.y].transform.position;
+        }
+
+        return true;
     }
 
    
