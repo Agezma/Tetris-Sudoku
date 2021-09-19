@@ -35,6 +35,7 @@ public class Sudoku : MonoBehaviour
         
        
     }
+
     [HideInInspector] public float spacing = 68f;
     [HideInInspector] public float startX;
     [HideInInspector] public float startY;
@@ -112,6 +113,21 @@ public class Sudoku : MonoBehaviour
         {
             cell.number = 0;
             cell.locked = cell.invalid = false;
+        }
+    }
+
+    public void DropDownCell(int x, int y)
+    {
+        List<Cell> drops = new List<Cell>();
+
+        for (int i = y - 1; i > 0; i--)
+        {
+            drops.Add(_board[x, i]);
+        }
+
+        for (int i = 0; i < drops.Count; i++)
+        {
+            _board[y - i, x] = drops[i];
         }
     }
 }

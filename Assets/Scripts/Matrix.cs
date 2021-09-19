@@ -91,6 +91,21 @@ public class Matrix<T> : IEnumerable<T>
         }
     }
 
+    public T this[Vector2Int xy]
+    {
+        get
+        {
+            var index = xy.x + xy.y * Width;
+            return matrix[index];
+        }
+        set
+        {
+            var index = xy.x + xy.y * Width;
+            matrix[index] = value;
+        }
+    }
+
+
     public IEnumerator<T> GetEnumerator()
     {
         for (int i = 0; i < Capacity; i++)

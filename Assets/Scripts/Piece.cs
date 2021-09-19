@@ -9,7 +9,7 @@ public class Piece : MonoBehaviour
 
     public Sudoku sudoku;
     Vector2Int currentIndex;
-    
+
     public InfoDict gridData;
 
     Vector2 initialVec;
@@ -19,9 +19,9 @@ public class Piece : MonoBehaviour
     void Start()
     {
         currentIndex.x = Mathf.RoundToInt(sudoku._bigSideX / 2f);
-        currentIndex.y= 0;
+        currentIndex.y = 0;
 
-        transform.position = sudoku._board[currentIndex.x, 0].transform.position + new Vector3(38,10,0);
+        transform.position = sudoku._board[currentIndex.x, 0].transform.position + new Vector3(38, 10, 0);
         initialVec = transform.position;
 
         foreach (var c in cellList)
@@ -50,14 +50,15 @@ public class Piece : MonoBehaviour
 
     }
 
-    public void Move(float dir)
-    {     
+    public void TryMove(float dir)
+    {
         foreach (var c in cellList)
         {
             float auxIndex = currentIndex.x + GetPosInGrid(c).x;
-            //Debug.Log(gridData.gridInfo[c.positionsInGrid[currentRotation]].x);
-            //Debug.Log("Pieza: "+ c+ " ---" + auxIndex);
-            if ( auxIndex + dir < 0 || auxIndex + dir >= sudoku._bigSideX)
+
+            if (auxIndex + dir < 0 || auxIndex + dir >= sudoku._bigSideX ||                        //Si me paso de los bordes 
+                sudoku._board[(int)auxIndex + (int)dir, currentIndex.y + GetPosInGrid(c).y].locked  //o si la celda a la que intento moverme esta lockeada
+                || sudoku._board[(int)auxIndex + (int)dir, currentIndex.y + GetPosInGrid(c).y + 1].locked)
                 return;
         }
 
@@ -66,14 +67,11 @@ public class Piece : MonoBehaviour
         {
             c.transform.position = new Vector3(sudoku._board[(int)(currentIndex.x + GetPosInGrid(c).x), 0].transform.position.x, c.transform.position.y, 0);
         }
-        //transform.position = new Vector3(sudoku._board[currentIndex.x, 0].transform.position.x + 38, transform.position.y, transform.position.z);
     }
 
     public void MoveDown()
     {
         transform.position += speed * Vector3.down;
-
-
 
     }
 
@@ -85,15 +83,23 @@ public class Piece : MonoBehaviour
         foreach (var c in cellList)
         {
             Vector2 aux = gridData.gridInfo[c.positionsInGrid[a]];
+
+            if (sudoku._board[currentIndex.x + (int)aux.x, currentIndex.y + (int)aux.y].locked ||
+                sudoku._board[currentIndex.x + (int)aux.x, currentIndex.y + (int)aux.y + 1].locked)
+            {
+                TryMove(GetPosInGrid(c).x - aux.x);
+                break;
+            }
+
             //Si alguna de las celdas pasa los limites
             if (currentIndex.x + aux.x >= sudoku._bigSideX)
             {
-                Move(-1);
+                TryMove(-1);
                 break;
             }
             else if (currentIndex.x + aux.x < 0)
             {
-                Move(1);
+                TryMove(1);
                 break;
             }
         }
@@ -103,7 +109,7 @@ public class Piece : MonoBehaviour
         foreach (var c in cellList)
         {
             Vector2 aux = GetPosInGrid(c);
-            c.transform.position = new Vector3(sudoku._board[(int)(currentIndex.x + aux.x), 0].transform.position.x, transform.position.y + aux.y * sudoku.spacing, 0);
+            c.transform.position = new Vector3(sudoku._board[(int)(currentIndex.x + aux.x), 0].transform.position.x, transform.position.y - aux.y * sudoku.spacing, 0);
         }
     }
 
@@ -112,27 +118,27 @@ public class Piece : MonoBehaviour
     {
         foreach (var c in cellList)
         {
-            Debug.Log(currentIndex + "---" + GetPosInGrid(c));
-            if(currentIndex.y - GetPosInGrid(c).y + 1 >= sudoku._board.Height)
+            if (currentIndex.y + GetPosInGrid(c).y + 1 >= sudoku._board.Height)
             {
                 Debug.Log("ABAJO");
 
                 foreach (var ce in cellList)
                 {
-                    sudoku.TranslateCurrentPiece(currentIndex.x + GetPosInGrid(ce).x, currentIndex.y - GetPosInGrid(ce).y, ce);
+                    sudoku.TranslateCurrentPiece(currentIndex.x + GetPosInGrid(ce).x, currentIndex.y + GetPosInGrid(ce).y, ce);
                 }
                 EventManager.instance.TriggerEvent(EventNames.OnFichaArrived);
 
                 Destroy(gameObject);
                 return false;
             }
-            else if( sudoku._board[currentIndex.x + GetPosInGrid(c).x, currentIndex.y - GetPosInGrid(c).y + 1].locked)
+            else if (sudoku._board[currentIndex.x + GetPosInGrid(c).x, currentIndex.y + GetPosInGrid(c).y + 1].locked)
             {
                 Debug.Log("LOCKED");
 
                 foreach (var ce in cellList)
                 {
-                    sudoku.TranslateCurrentPiece(currentIndex.x + GetPosInGrid(ce).x, currentIndex.y - GetPosInGrid(ce).y, ce);
+                    sudoku.TranslateCurrentPiece(currentIndex.x + GetPosInGrid(ce).x, currentIndex.y + GetPosInGrid(ce).y, ce);
+                    
                 }
                 EventManager.instance.TriggerEvent(EventNames.OnFichaArrived);
 
@@ -142,7 +148,7 @@ public class Piece : MonoBehaviour
         }
 
 
-        if(currentIndex.y + 1 >= sudoku._board.Height)
+        if (currentIndex.y + 1 >= sudoku._board.Height)
         {
             Debug.Log("FALLA");
         }
@@ -155,5 +161,5 @@ public class Piece : MonoBehaviour
         return true;
     }
 
-   
+
 }

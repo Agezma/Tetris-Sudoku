@@ -32,7 +32,7 @@ public class PlayerModel : MonoBehaviour
         //isMoving = !isMoving;
         //Debug.Log("isMoving");
       
-        controlledPiece.Move(a);
+        controlledPiece.TryMove(a);
 
     }
 
