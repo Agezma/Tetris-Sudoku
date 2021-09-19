@@ -13,7 +13,7 @@ public class Cell : MonoBehaviour
     int _number;
     bool _locked;
     bool _invalid;
-    public Image _image;
+    Image _image;
     Color _prev;
 
     public List<int> positionsInGrid;
