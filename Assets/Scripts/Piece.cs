@@ -117,9 +117,14 @@ public class Piece : MonoBehaviour
                 foreach (var ce in cellList)
                 {
                     sudoku.TranslateCurrentPiece(currentIndex.x + GetPosInGrid(ce).x, currentIndex.y + GetPosInGrid(ce).y, ce);
-                }
-                EventManager.instance.TriggerEvent(EventNames.OnFichaArrived);
 
+                    if (sudoku.CheckFullRow(currentIndex.x + GetPosInGrid(ce).x, currentIndex.y + GetPosInGrid(ce).y))
+                    {
+                        sudoku.DropDownRow(currentIndex.y + GetPosInGrid(ce).y);
+                    }
+                }
+
+                EventManager.instance.TriggerEvent(EventNames.OnFichaArrived);
                 Destroy(gameObject);
                 return false;
             }
@@ -130,7 +135,11 @@ public class Piece : MonoBehaviour
                 foreach (var ce in cellList)
                 {
                     sudoku.TranslateCurrentPiece(currentIndex.x + GetPosInGrid(ce).x, currentIndex.y + GetPosInGrid(ce).y, ce);
-                    
+
+                    if (sudoku.CheckFullRow(currentIndex.x + GetPosInGrid(ce).x, currentIndex.y + GetPosInGrid(ce).y))
+                    {
+                        sudoku.DropDownRow(currentIndex.y + GetPosInGrid(ce).y);
+                    }
                 }
                 EventManager.instance.TriggerEvent(EventNames.OnFichaArrived);
 

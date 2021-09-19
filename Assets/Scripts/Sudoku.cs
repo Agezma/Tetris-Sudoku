@@ -29,7 +29,6 @@ public class Sudoku : MonoBehaviour
         CreateSudoku();
     }
 
-
     private void Update()
     {
         
@@ -102,6 +101,8 @@ public class Sudoku : MonoBehaviour
             for (int x = 0; x < _board.Width; x++)
             {
                 _board[x, y].number = matrix[x, y];
+
+                if (!_board[x, y].isEmpty) _board[x, y].locked = true;
             }
         }
     }
@@ -116,18 +117,63 @@ public class Sudoku : MonoBehaviour
         }
     }
 
-    public void DropDownCell(int x, int y)
+    public bool CheckFullRow(int x, int y)
     {
-        List<Cell> drops = new List<Cell>();
-
-        for (int i = y - 1; i > 0; i--)
+        Debug.Log("CHECK ROW");
+        for (int i = 0; i < _board.Width ; i++)
         {
-            drops.Add(_board[x, i]);
+            if (_board[i, y].isEmpty)
+            {
+                Debug.Log("FILE NOT FULL");
+                return false;
+            }
         }
 
-        for (int i = 0; i < drops.Count; i++)
+        List<int> allInts = new List<int>();
+        for (int i = 1; i <= _board.Width; i++)
         {
-            _board[y - i, x] = drops[i];
+            allInts.Add(i);
         }
+        for (int i = 0; i < _board.Width; i++)
+        {
+            if (!allInts.Contains(_board[i, y].number))
+            {
+                Debug.Log("NUMERO REPETIDO");
+                return false;
+            }
+            allInts.Remove(_board[i, y].number);
+        }
+        return true;
+    }
+
+    public void DropDownRow(int y)
+    {
+        Matrix<int> droppedMatrix = new Matrix<int>(_bigSideX, _bigSideY);
+
+        int QuedanIgual = 0;
+        int Bajan = 0;
+
+        for (int i = 0; i < droppedMatrix.Width ; i++)
+        {
+            for (int j = 0; j < droppedMatrix.Height; j++)
+            {                
+                if (_board[i, j].isEmpty) continue;
+                if (j > y)
+                {
+                    droppedMatrix[i, j] = _board[i, j].number;
+                    QuedanIgual++;
+                }
+                else if( j > 0)
+                {
+                    Bajan++;
+                    droppedMatrix[i,j] = _board[i, j - 1].number;
+                }
+            }
+        }
+
+        Debug.Log("Quedan: " + QuedanIgual + "--- Bajan: " + Bajan);
+
+        ClearBoard();
+        TranslateAllValues(droppedMatrix);
     }
 }

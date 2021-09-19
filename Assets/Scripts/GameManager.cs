@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     nextPiece.transform.position = nextPieceTransform.transform.position;
     foreach (var c in nextPiece.cellList)
         {
-            int n = Random.Range(1, 10);
+            int n = Random.Range(1, nextPiece.sudoku._bigSideX + 1);
             c.number = n;
         }
     }
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         nextPiece.transform.position = nextPieceTransform.transform.position;
         foreach (var c in nextPiece.cellList)
         {
-            int n = Random.Range(1, 10);
+            int n = Random.Range(1, nextPiece.sudoku._bigSideX + 1);
             c.number = n;
         }
         

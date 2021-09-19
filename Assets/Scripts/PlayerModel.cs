@@ -25,18 +25,18 @@ public class PlayerModel : MonoBehaviour
 
         
 
-        GameManager gameManager = FindObjectOfType<GameManager>();
-        if(gameManager.holdPiece == null ){
+        //GameManager gameManager = FindObjectOfType<GameManager>();
+        //if(gameManager.holdPiece == null ){
 
-            gameManager.holdPiece = controlledPiece;
-            gameManager.holdPiece.transform.position = gameManager.holdPieceTransform.position;
-            gameManager.holdPiece.DeactivatePiece();
-            return;
-        }   
-        else {
+        //    gameManager.holdPiece = controlledPiece;
+        //    gameManager.holdPiece.transform.position = gameManager.holdPieceTransform.position;
+        //    gameManager.holdPiece.DeactivatePiece();
+        //    return;
+        //}   
+        //else {
 
 
-        }
+        //}
         
     }
     public void Swipe(float a){
