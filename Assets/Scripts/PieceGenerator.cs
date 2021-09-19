@@ -5,7 +5,6 @@ using UnityEngine;
 public class PieceGenerator : MonoBehaviour
 {
     public List<Piece> pieces;
-    public Transform canvas;
     public Sudoku sudoku;
 
     public void Start()

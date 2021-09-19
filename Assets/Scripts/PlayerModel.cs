@@ -16,16 +16,28 @@ public class PlayerModel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isMoving){
-
-        controlledPiece.transform.position += controlledPiece.speed * Vector3.right * axis;
-        }
+        
     }
     public void Rotate(){
         controlledPiece.Rotate();
     }
     public void Hold(){
 
+        
+
+        GameManager gameManager = FindObjectOfType<GameManager>();
+        if(gameManager.holdPiece == null ){
+
+            gameManager.holdPiece = controlledPiece;
+            gameManager.holdPiece.transform.position = gameManager.holdPieceTransform.position;
+            gameManager.holdPiece.DeactivatePiece();
+            return;
+        }   
+        else {
+
+
+        }
+        
     }
     public void Swipe(float a){
         //axis = a;
