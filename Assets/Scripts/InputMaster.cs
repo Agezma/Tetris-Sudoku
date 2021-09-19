@@ -31,7 +31,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""type"": ""PassThrough"",
                     ""id"": ""302d42ca-d211-4257-a651-54b3ceda6146"",
                     ""expectedControlType"": """",
-                    ""processors"": """",
+                    ""processors"": ""Normalize(max=1)"",
                     ""interactions"": """"
                 },
                 {
@@ -66,18 +66,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9d320fac-690c-4c6e-8999-a292939d58fd"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Hold"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6e06504d-de82-49f0-9637-407db807db0e"",
-                    ""path"": ""<Mouse>/position"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

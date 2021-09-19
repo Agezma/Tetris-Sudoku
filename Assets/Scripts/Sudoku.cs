@@ -21,7 +21,7 @@ public class Sudoku : MonoBehaviour
     public int _bigSideY;
 
 
-    private void Start()
+    private void Awake()
     {
         CreateEmptyBoard();
         ClearBoard();

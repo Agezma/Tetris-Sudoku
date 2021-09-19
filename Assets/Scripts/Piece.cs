@@ -8,16 +8,18 @@ public class Piece : MonoBehaviour
     public float speed;
 
     public Sudoku sudoku;
-    Vector2Int currentIndex;
+    public Vector2Int currentIndex;
 
     public InfoDict gridData;
 
-    Vector2 initialVec;
+    public Vector2 initialVec;
 
     int currentRotation = 0;
+    bool isActive = false;
     // Start is called before the first frame update
     void Start()
     {
+        /*
         currentIndex.x = Mathf.RoundToInt(sudoku._bigSideX / 2f);
         currentIndex.y = 0;
 
@@ -32,9 +34,11 @@ public class Piece : MonoBehaviour
             Vector2 aux = GetPosInGrid(c);
             c.transform.position = new Vector3(sudoku._board[(int)(currentIndex.x + aux.x), 0].transform.position.x, transform.position.y + aux.y * sudoku.spacing, 0);
         }
+        */
+        
     }
 
-    Vector2Int GetPosInGrid(Cell c)
+    public Vector2Int GetPosInGrid(Cell c)
     {
         return gridData.gridInfo[c.positionsInGrid[currentRotation]];
     }
@@ -116,6 +120,11 @@ public class Piece : MonoBehaviour
 
     public bool CanMoveDown()
     {
+        Debug.Log(isActive);
+        if (isActive == false)
+        {
+            return false;
+        }
         foreach (var c in cellList)
         {
             if (currentIndex.y + GetPosInGrid(c).y + 1 >= sudoku._board.Height)
@@ -159,6 +168,14 @@ public class Piece : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void ActivatePiece(){
+        isActive = true;
+        Debug.Log("IsTrue");
+    }
+    public void DeactivatePiece(){
+        isActive = false;
     }
 
 
