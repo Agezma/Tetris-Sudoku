@@ -53,19 +53,8 @@
                 {
                     "name": "",
                     "id": "9d320fac-690c-4c6e-8999-a292939d58fd",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Hold",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6e06504d-de82-49f0-9637-407db807db0e",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",
                     "action": "Hold",

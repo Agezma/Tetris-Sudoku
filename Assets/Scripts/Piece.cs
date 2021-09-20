@@ -103,7 +103,6 @@ public class Piece : MonoBehaviour
 
     public bool CanMoveDown()
     {
-        Debug.Log(isActive);
         if (isActive == false)
         {
             return false;
@@ -163,7 +162,6 @@ public class Piece : MonoBehaviour
     }
     public void ActivatePiece(){
         isActive = true;
-        Debug.Log("IsTrue");
     }
     public void DeactivatePiece(){
         isActive = false;
