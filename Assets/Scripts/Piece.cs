@@ -14,7 +14,7 @@ public class Piece : MonoBehaviour
 
     public Vector2 initialVec;
 
-    int currentRotation = 0;
+    public int currentRotation = 0;
      bool isActive = false;
     // Start is called before the first frame update
     void Start()
@@ -165,6 +165,18 @@ public class Piece : MonoBehaviour
     }
     public void DeactivatePiece(){
         isActive = false;
+    }
+
+
+    public void DesactivatePiece()
+    {
+        currentRotation = 0;
+        currentIndex = new Vector2Int(Mathf.RoundToInt(sudoku._bigSideX / 2f) ,0);
+
+        foreach (var c in cellList)
+        {
+            c.transform.position = new Vector3(sudoku._board[(int)(currentIndex.x + GetPosInGrid(c).x), 0].transform.position.x, transform.position.y - GetPosInGrid(c).y * sudoku.spacing, 0);
+        }
     }
 
 

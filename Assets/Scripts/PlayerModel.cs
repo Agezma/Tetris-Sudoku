@@ -31,6 +31,8 @@ if (pressed)
         if(gameManager.holdPiece == null ){
 
             gameManager.holdPiece = controlledPiece;
+       
+         gameManager.holdPiece.DesactivatePiece();
             gameManager.holdPiece.transform.position = gameManager.holdPieceTransform.position;
             gameManager.holdPiece.DeactivatePiece();
             gameManager.GeneratePiece();
@@ -40,8 +42,11 @@ if (pressed)
         else {
             Piece p = gameManager.holdPiece;
             gameManager.holdPiece = controlledPiece;
+         gameManager.holdPiece.DesactivatePiece();
             gameManager.holdPiece.transform.position = gameManager.holdPieceTransform.position;
+            
             gameManager.holdPiece.DeactivatePiece();
+
         
             p.currentIndex.x = Mathf.RoundToInt(p.sudoku._bigSideX / 2f);
         p.currentIndex.y = 0;
